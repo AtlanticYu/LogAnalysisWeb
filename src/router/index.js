@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+/* Layout */
+import Layout from '../views/layout/Layout'
 /**
  * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
  * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
@@ -16,19 +18,28 @@ Vue.use(VueRouter)
   }
  **/
 
-const routes = [
-  {path: '/home', component: () => import('@/views/home/index')},
-  {path: '/', component: () => import('@/views/login/index')},
-  {path: '/404', component: () => import('@/views/404')},
-  {path: '*', redirect: '/404'}
+export const constantRouterMap = [
+  {path: '/login', component: () => import('@/views/login/index'), hidden: true},
+  {path: '/404', component: () => import('@/views/404'), hidden: true},
+  {
+    path: '',
+    component: Layout,
+    redirect: '/home',
+    children: [{
+      path: 'home',
+      name: 'home',
+      component: () => import('@/views/home/index'),
+      meta: {title: '首页', icon: 'home'}
+    }]
+  }
 ]
 
 //异步挂载的路由
 //动态需要根据权限加载的路由表
 export const asyncRouterMap = []
 
-const router = new VueRouter({
-  routes
+export default new VueRouter({
+  // mode: 'history', //#访问路径调整
+  scrollBehavior: () => ({y: 0}),
+  routes: constantRouterMap
 })
-
-export default router
