@@ -4,9 +4,11 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import './icons';  //这样才能确保svg-icon的注册
+//import './store/modules/app'
 
 Vue.config.productionTip = false
 
+//store -- vuex的状态管理
 //runtime模式（运行时）,vue模块的package.json的main字段默认为runtime模式
 new Vue({
   router,
