@@ -4,7 +4,7 @@
         <breadcrumb></breadcrumb>
         <el-dropdown class="avatar-container" trigger="click">
             <div class="avatar-wrapper">
-                <img class="user-avatar" :src="avatar">
+                <img class="user-avatar" :src="apple">
                 <i class="el-icon-caret-bottom"></i>
             </div>
             <el-dropdown-menu class="user-dropdown" slot="dropdown">
@@ -22,11 +22,17 @@
 </template>
 
 <script>
+    import apple from '@/assets/images/apple.jpg'
     import { mapGetters } from 'vuex'
     import Breadcrumb from '@/components/Breadcrumb'
     import Hamburger from '@/components/Hamburger'
 
     export default {
+        data() {
+            return {
+                apple
+            }
+        },
         components: {
             Breadcrumb,
             Hamburger

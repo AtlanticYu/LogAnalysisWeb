@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
 import store from './store'
+import './store/modules/permission' // permission control
+import router from './router'
 import './plugins/element.js'
 import './icons';  //这样才能确保svg-icon的注册
-//import './store/modules/app'
-
+import '@/permission'
+import '@/styles/index.scss' // global css
 Vue.config.productionTip = false
 
 //store -- vuex的状态管理
