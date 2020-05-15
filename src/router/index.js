@@ -43,21 +43,47 @@ export const asyncRouterMap = [
     component:Layout,
     redirect:'/localLogOperation/one',
     name:'localLogOperation',
-    meta:{title:'本地日志操作',icon:'local'},
+    meta:{title:'本地日志操作',icon:'local-upload'},
     children: [{
       path: 'one',
       name: 'one',
       component: () => import('@/views/local/localone'),
-      meta: {title: '本地一', icon: 'one'}
+      meta: {title: '上传', icon: 'upload'}
     },
       {
         path: 'two',
         name: 'two',
         component: () => import('@/views/local/localtwo'),
-        meta: {title: '本地二', icon: 'two'}
+        meta: {title: '分析', icon: 'analysis'}
       }
       ]
   },
+    {
+        path:'/historyAnalysis',
+        component:Layout,
+        redirect:'/localLogOperation/one',
+        name:'historyAnalysis',
+        meta:{title:'历史记录',icon:'history'},
+        children: [{
+            path: 'anotherone',
+            name: 'anotherone',
+            component: () => import('@/views/historyAnalysis/anotherone'),
+            meta: {title: '历史记录', icon: 'history'}
+        },]
+    },
+    {
+        path:'/systemConfig',
+        component:Layout,
+        redirect:'/systemConfig/van',
+        name:'systemConfig',
+        meta:{title:'系统设置',icon:'history'},
+        children: [{
+            path: 'systemConfig',
+            name: 'systemConfig',
+            component: () => import('@/views/systemConfig/van'),
+            meta: {title: '系统设置', icon: 'system-config'}
+        },]
+    },
   {path: '*', redirect: '/404', hidden: true}
 ]
 
