@@ -2,43 +2,68 @@
     <div class="app-container">
         <span> localtwo  page1  </span>
         <div class="ipanalysis-layout">
+            <div class="layout-title">相同Url的网络访问次数</div>
+            <el-row>
+                <el-col :span="24">
+                    <div class="grid-content bg-purple-dark">
+                        <ve-bar :data="chartDataUrl" :settings="UrlchartSettings" :loading="UrlLoading"></ve-bar>
+                    </div>
+                </el-col>
+            </el-row>
             <div class="layout-title">相同IP的网络访问次数</div>
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content bg-purple-dark">
-                        <ve-bar :data="chartDataUrl" :settings="chartSettings" :loading="UrlLoading"></ve-bar>
+                        <ve-histogram :data="chartDataIp" :settings="IpchartSettings" :loading="IpLoading"></ve-histogram>
                     </div>
                 </el-col>
             </el-row>
-        </div>
+            </div>
+        <div class="layout-title">当前日志各个时间段网络访问次数</div>
+        <el-row>
+            <el-col :span="24">
+                <div class="grid-content bg-purple-dark">
+                    <ve-line :data="chartDataNetTime" :settings="NetTimechartSettings" :loading="NetTimeoading"></ve-line>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
     </div>
 </template>
 
 <script>
-    import {fetchList} from "../../api/analysisResult";
+    import {fetchUrlList,fetchIpList,fetchNetTimeList} from "../../api/analysisResult";
     export default {
         name: "localtwo",
         data() {
-            this.chartSettings = {
+            this.UrlchartSettings = {
                 metrics: ['visit_count'],
                 dataOrder: {
                     label: 'visit_count',
                     order: 'desc'
                 }
-            }
+            };
+            this.IpchartSettings = {
+                xAxisType: 'ip_value',
+            };
+            this.NetTimechartSettings = {
+            };
             return {
                 chartDataUrl: {
-                    columns: ['url_value', '访问次数'],
-                    rows: [
-                        { 'url_value': '1/1', 'visit_count': 1393},
-                        { 'url_value': '1/2', 'visit_count': 3530},
-                        { 'url_value': '1/3', 'visit_count': 2923},
-                        { 'url_value': '1/4', 'visit_count': 1723},
-                        { 'url_value': '1/5', 'visit_count': 3792},
-                        { 'url_value': '1/6', 'visit_count': 4593}
-                    ]
+                    columns: ['url_value', 'visit_count'],
+                    rows: []
                 },
                 UrlLoading: false,
+                chartDataIp:{
+                    columns:['ip_value','visit_count'],
+                    rows:[]
+                },
+                IpLoading: false,
+                chartDataNetTime:{
+                    columns:['time_value','visit_count'],
+                    rows:[]
+                },
+                NetTimeoading:false
             }
         },
         created() {
@@ -46,10 +71,21 @@
         },
         methods:{
             initUrlVisitCount() {
-                this.IpLoading = true;
-                fetchList().then(response => {
+                this.UrlLoading = true;
+                fetchUrlList().then(response => {
                     this.UrlLoading = false;
                     this.chartDataUrl.rows = response.data.UrlAnaResult;
+                });
+
+                this.IpLoading = true;
+                fetchIpList().then(response => {
+                     this.IpLoading = false;
+                     this.chartDataIp.rows = response.data.IpAnaResult;
+                });
+
+                fetchNetTimeList().then(response => {
+                     this.NetTimeoading = false;
+                     this.chartDataNetTime.rows = response.data.NetTimeAnaResult;
                 });
             }
         }
