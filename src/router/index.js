@@ -58,32 +58,32 @@ export const asyncRouterMap = [
       }
       ]
   },
-    {
-        path:'/historyAnalysis',
-        component:Layout,
-        redirect:'/localLogOperation/one',
-        name:'historyAnalysis',
-        meta:{title:'历史记录',icon:'history'},
-        children: [{
-            path: 'anotherone',
-            name: 'anotherone',
-            component: () => import('@/views/historyAnalysis/anotherone'),
-            meta: {title: '历史记录', icon: 'history'}
-        },]
-    },
-    {
-        path:'/systemConfig',
-        component:Layout,
-        redirect:'/systemConfig/van',
-        name:'systemConfig',
-        meta:{title:'系统设置',icon:'history'},
-        children: [{
-            path: 'systemConfig',
-            name: 'systemConfig',
-            component: () => import('@/views/systemConfig/van'),
-            meta: {title: '系统设置', icon: 'system-config'}
-        },]
-    },
+    // {
+    //     path:'/historyAnalysis',
+    //     component:Layout,
+    //     redirect:'/localLogOperation/one',
+    //     name:'historyAnalysis',
+    //     meta:{title:'历史记录',icon:'history'},
+    //     children: [{
+    //         path: 'anotherone',
+    //         name: 'anotherone',
+    //         component: () => import('@/views/historyAnalysis/anotherone'),
+    //         meta: {title: '历史记录', icon: 'history'}
+    //     },]
+    // },
+    // {
+    //     path:'/systemConfig',
+    //     component:Layout,
+    //     redirect:'/systemConfig/van',
+    //     name:'systemConfig',
+    //     meta:{title:'系统设置',icon:'history'},
+    //     children: [{
+    //         path: 'systemConfig',
+    //         name: 'systemConfig',
+    //         component: () => import('@/views/systemConfig/van'),
+    //         meta: {title: '系统设置', icon: 'system-config'}
+    //     },]
+    // },
   {path: '*', redirect: '/404', hidden: true}
 ]
 

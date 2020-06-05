@@ -8,7 +8,7 @@
                  label-position="left">
             <div style="text-align: center">
                 <!--使用svg-icon前需要注册相应组件-->
-                <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>
+                <svg-icon icon-class="login-ana" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>
             </div>
             <h2 class="login-title color-main">log-analysis-web</h2>
             <el-form-item prop="username">
@@ -42,7 +42,7 @@
                     登录
                 </el-button>
                 <el-button style="width: 45%" type="primary" @click.native.prevent="handleTry">
-                    获取体验账号
+                    注册
                 </el-button>
             </el-form-item>
         </el-form>

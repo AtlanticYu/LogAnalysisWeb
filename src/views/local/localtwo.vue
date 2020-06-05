@@ -1,6 +1,5 @@
 <template>
     <div class="app-container">
-        <span> localtwo  page1  </span>
         <div class="ipanalysis-layout">
             <div class="layout-title">相同Url的网络访问次数</div>
             <el-row>
@@ -27,7 +26,6 @@
                 </div>
             </el-col>
         </el-row>
-    </div>
     </div>
 </template>
 
